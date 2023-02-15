@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "clinyong.vscode-css-modules",
+    "mrmlnc.vscode-scss",
+    "editorconfig.editorconfig",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "syler.sass-indented"
+  ]
+}
