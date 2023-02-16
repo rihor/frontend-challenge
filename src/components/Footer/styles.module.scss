@@ -7,8 +7,8 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		width: $constraint-main-col;
+		max-width: $constraint-main-col;
 		margin-inline: auto;
-		padding-block: 24px;
+		padding: 24px 8px;
 	}
 }

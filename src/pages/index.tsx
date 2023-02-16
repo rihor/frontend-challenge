@@ -6,6 +6,7 @@ import { GetStaticProps } from "next";
 import axios from "axios";
 import { Blockchain, Blockchains } from "@/services/blockchains";
 import { HorizontalTimeline } from "@/components/HorizontalTimeline";
+import { TopCryptos } from "@/components/TopCryptos";
 
 interface Props {
 	assets: Blockchain[];
@@ -16,6 +17,7 @@ export default function LandingPage(props: Props) {
 		<main className={styles.main}>
 			<LandingNavigator blockchains={props.assets} />
 
+			<TopCryptos blockchains={props.assets} />
 			<ContactForm />
 			<Footer />
 		</main>
