@@ -27,7 +27,11 @@ export function Button(props: Props) {
 		<button
 			{...props}
 			type={props.type || "button"}
-			className={appendStyles([styles.base, styles[props.design]])}
+			className={appendStyles([
+				styles.base,
+				styles[props.design],
+				props.className,
+			])}
 		>
 			{props.children}
 		</button>
