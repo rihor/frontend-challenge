@@ -9,6 +9,10 @@ const nextConfig = {
 				protocol: "https",
 				hostname: "api.lorem.space",
 			},
+			{
+				protocol: "https",
+				hostname: "cryptologos.cc",
+			},
 		],
 	},
 	sassOptions: {

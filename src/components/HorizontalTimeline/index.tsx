@@ -1,6 +1,7 @@
 import { Blockchain } from "@/services/blockchains";
 import { formatDollar } from "@/utils/currency";
 import { appendStyles } from "@/utils/styles";
+import { CurrencyChange } from "../CurrencyChange";
 import styles from "./styles.module.scss";
 
 interface Props {
@@ -27,21 +28,13 @@ interface ElementProps {
 }
 
 function TimelineElement(props: ElementProps) {
-	const formattedChange = formatDollar(props.data.changePercent24Hr);
-	const isPositive = Number(formattedChange) >= 0;
-
 	return (
 		<div key={props.data.symbol} className={styles.element}>
 			<span className={styles.symbol}>{props.data.symbol}</span>
-			<span className={styles.price}>{formatDollar(props.data.priceUsd)}</span>
-			<span
-				className={appendStyles([
-					styles.change,
-					isPositive ? styles.positive : styles.negative,
-				])}
-			>
-				{isPositive ? `+${formattedChange}` : formattedChange}
+			<span className={styles.price}>
+				{formatDollar(Number(props.data.priceUsd), true)}
 			</span>
+			<CurrencyChange value={Number(props.data.changePercent24Hr)} />
 		</div>
 	);
 }
