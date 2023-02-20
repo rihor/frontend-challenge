@@ -6,6 +6,7 @@ import styles from "./styles.module.scss";
 
 interface Props {
 	blockchains: Blockchain[];
+	onSignInClick: () => void;
 }
 
 export function LandingNavigator(props: Props) {
@@ -35,7 +36,9 @@ export function LandingNavigator(props: Props) {
 						<HorizontalTimeline chains={props.blockchains} />
 					</div>
 					<div className={styles.buttons_container}>
-						<Button design="ghost">Sign in</Button>
+						<Button design="ghost" onClick={props.onSignInClick}>
+							Sign in
+						</Button>
 						<Button design="primary">Sign up</Button>
 					</div>
 				</div>

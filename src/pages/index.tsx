@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { GetStaticProps } from "next";
 import Image from "next/image";
 import axios from "axios";
@@ -8,6 +9,8 @@ import { Blockchain, Blockchains } from "@/services/blockchains";
 import { TopCryptos } from "@/components/TopCryptos";
 import { AboutUs } from "@/components/AboutUs";
 import { Hero } from "@/components/Hero";
+import { Modal, ModalHandler } from "@/components/modals/Modal";
+import { SignInForm } from "@/components/forms/SignIn";
 import styles from "./LandingPage.module.scss";
 
 interface Props {
@@ -15,9 +18,18 @@ interface Props {
 }
 
 export default function LandingPage(props: Props) {
+	const modalHandler = useRef<ModalHandler>(null);
+
 	return (
 		<main className={styles.main}>
-			<LandingNavigator blockchains={props.assets} />
+			<Modal ref={modalHandler}>
+				<SignInForm />
+			</Modal>
+
+			<LandingNavigator
+				blockchains={props.assets}
+				onSignInClick={() => modalHandler.current?.open()}
+			/>
 			<Hero />
 			<div className={styles.waves}>
 				<Image
