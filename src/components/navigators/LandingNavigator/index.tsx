@@ -21,7 +21,7 @@ export function LandingNavigator(props: Props) {
 					/>
 
 					<div className={styles.links}>
-						<Button href="/about-us" design="ghost">
+						<Button href="#about-us" design="ghost">
 							About us
 						</Button>
 						<Button href="#top-cryptos" design="ghost">

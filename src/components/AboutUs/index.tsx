@@ -4,7 +4,7 @@ import styles from "./styles.module.scss";
 
 export function AboutUs() {
 	return (
-		<section className={styles.background}>
+		<section id="about-us" className={styles.background}>
 			<div className={styles.section_content}>
 				<div className={styles.cards_wrapper}>
 					<div>
