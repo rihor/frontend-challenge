@@ -5,31 +5,23 @@ import {
 	ReactNode,
 } from "react";
 import { FieldErrors, FieldValues } from "react-hook-form";
-import { appendStyles } from "@/utils/styles";
 import styles from "./styles.module.scss";
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
-	label?: string;
-	design: "filled" | "ghost";
-	iconLeft?: ReactNode;
-	iconRight?: ReactNode;
 	validationsError?: FieldErrors<FieldValues>;
+	children: ReactNode;
 }
 
-const InputComponent: ForwardRefRenderFunction<HTMLInputElement, Props> = (
-	{ label, design, iconLeft, iconRight, validationsError, ...props },
+const CheckComponent: ForwardRefRenderFunction<HTMLInputElement, Props> = (
+	{ children, validationsError, ...props },
 	ref
 ) => {
 	const messageError = props.name && validationsError?.[props.name]?.message;
 
 	return (
-		<div className={appendStyles([styles.wrapper_base, styles[design]])}>
-			{label && <label>{label}</label>}
-			<div className={styles.input_wrapper}>
-				{iconLeft}
-				<input ref={ref} {...props} />
-				{iconRight}
-			</div>
+		<div className={styles.wrapper_base}>
+			<input id={props.name} ref={ref} type="checkbox" {...props} />
+			<label htmlFor={props.name}>{children}</label>
 			{messageError && (
 				<span className={styles.error_message}>{messageError.toString()}</span>
 			)}
@@ -37,4 +29,4 @@ const InputComponent: ForwardRefRenderFunction<HTMLInputElement, Props> = (
 	);
 };
 
-export const Input = forwardRef(InputComponent);
+export const Checkbox = forwardRef(CheckComponent);

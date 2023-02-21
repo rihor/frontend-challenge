@@ -14,6 +14,7 @@ import { Input } from "../Input";
 import styles from "./styles.module.scss";
 import { Button } from "../Button";
 import { signUpSchema } from "./validations";
+import { Checkbox } from "../Check";
 
 export function SignUpForm() {
 	const [isPassVisible, setIsPassVisible] = useState(false);
@@ -37,8 +38,6 @@ export function SignUpForm() {
 	const onError: SubmitErrorHandler<FieldValues> = (errors, event) => {
 		console.log("errors");
 	};
-
-	console.log(errors);
 
 	return (
 		<form
@@ -139,7 +138,10 @@ export function SignUpForm() {
 				}
 			/>
 
-			{/** TODO: Check btn */}
+			<Checkbox {...register("readTerms")} validationsError={errors}>
+				I have read and accept the <b>Privacy Policy</b> and{" "}
+				<b>Terms of User Sign up.</b>
+			</Checkbox>
 
 			<Button type="submit" design="primary" className={styles.sign_custom_btn}>
 				Sign Up
