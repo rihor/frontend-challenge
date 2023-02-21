@@ -3,7 +3,11 @@ import { Button } from "../Button";
 import { Arrow } from "../SVGs/Arrow";
 import styles from "./styles.module.scss";
 
-export function Hero() {
+interface Props {
+	onSignUpClick: () => void;
+}
+
+export function Hero(props: Props) {
 	return (
 		<section className={styles.background}>
 			<div className={styles.section_container}>
@@ -17,7 +21,11 @@ export function Hero() {
 								urna, porttitor
 							</h5>
 						</header>
-						<Button design="primary" className={styles.custom_button}>
+						<Button
+							design="primary"
+							className={styles.custom_button}
+							onClick={props.onSignUpClick}
+						>
 							SIGN UP NOW
 							<Arrow fill="#fff" width={12} height={12} />
 						</Button>

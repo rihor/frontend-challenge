@@ -12,34 +12,53 @@ import { Hero } from "@/components/Hero";
 import { Modal, ModalHandler } from "@/components/modals/Modal";
 import { SignInForm } from "@/components/forms/SignIn";
 import styles from "./LandingPage.module.scss";
+import { SignUpForm } from "@/components/forms/SignUp";
 
 interface Props {
 	assets: Blockchain[];
 }
 
 export default function LandingPage(props: Props) {
-	const modalHandler = useRef<ModalHandler>(null);
+	const modalHandlerSignIn = useRef<ModalHandler>(null);
+	const modalHandlerSignUp = useRef<ModalHandler>(null);
+
+	function openSignIn() {
+		modalHandlerSignUp.current?.close();
+		modalHandlerSignIn.current?.open();
+	}
+
+	function openSignUp() {
+		modalHandlerSignIn.current?.close();
+		modalHandlerSignUp.current?.open();
+	}
 
 	return (
 		<main className={styles.main}>
-			<Modal ref={modalHandler}>
+			<Modal ref={modalHandlerSignIn}>
 				<SignInForm />
+			</Modal>
+
+			<Modal ref={modalHandlerSignUp}>
+				<SignUpForm />
 			</Modal>
 
 			<LandingNavigator
 				blockchains={props.assets}
-				onSignInClick={() => modalHandler.current?.open()}
+				onSignInClick={openSignIn}
+				onSignUpClick={openSignUp}
 			/>
-			<Hero />
+			<Hero onSignUpClick={openSignUp} />
 			<div className={styles.waves}>
 				<Image
 					src="/svgs/waves.svg"
 					alt="waves illustration"
 					role="none"
 					fill
+					placeholder="blur"
+					blurDataURL="/svgs/waves.svg"
 				/>
 			</div>
-			<AboutUs />
+			<AboutUs onSignUpClick={openSignUp} />
 			<TopCryptos blockchains={props.assets} />
 			<ContactForm />
 			<Footer />
