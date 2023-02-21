@@ -11,6 +11,13 @@
   <a href="#bônus">Bônus</a>
 </p>
 
+# My experience
+
+I've chose to use next.js because it's what I'm confortable with.
+For styling I used sass and css modules, because I really like the experience and safety to work with styles that won't leak and/or force me to use !important.
+For forms I decided to use hook form because it's really easy and optimized.
+And last but not least I used headless ui to implement a modal because it enabled a really clean component.
+
 ## 💻 Sobre o desafio
 
 Este desafio consiste no desenvolvimento da interface de uma landing page e uma dashboard. Os mockups estão no figma:
