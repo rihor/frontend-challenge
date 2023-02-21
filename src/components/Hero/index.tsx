@@ -1,3 +1,4 @@
+import { useWindowSize } from "@/hooks/useWindowSize";
 import Image from "next/image";
 import { Button } from "../Button";
 import { Arrow } from "../SVGs/Arrow";
@@ -8,6 +9,9 @@ interface Props {
 }
 
 export function Hero(props: Props) {
+	const { width, height } = useWindowSize();
+	const isMobile = (width || 0) < 595;
+
 	return (
 		<section className={styles.background}>
 			<div className={styles.section_container}>
@@ -38,14 +42,16 @@ export function Hero(props: Props) {
 					</div>
 				</div>
 
-				<div>
-					<Image
-						src="/images/woman_tablet.png"
-						alt="Woman looking at tablet"
-						width={464 + 32}
-						height={499}
-					/>
-				</div>
+				{!isMobile ? (
+					<div className={styles.hero_img}>
+						<Image
+							src="/images/woman_tablet.png"
+							alt="Woman looking at tablet"
+							width={464 + 32}
+							height={499}
+						/>
+					</div>
+				) : undefined}
 			</div>
 		</section>
 	);

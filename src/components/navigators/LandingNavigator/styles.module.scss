@@ -60,6 +60,10 @@
 }
 
 @media (max-width: $break-point-mobile) {
+	.wrapper {
+		padding-inline: 16px;
+	}
+
 	.links {
 		display: none;
 	}
