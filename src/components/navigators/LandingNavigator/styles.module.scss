@@ -24,21 +24,21 @@
 .left_wrapper {
 	display: flex;
 	gap: 40px;
+}
 
-	.links {
-		display: flex;
-		gap: 24px;
-	}
+.links {
+	display: flex;
+	gap: 24px;
 }
 
 .right_wrapper {
 	display: flex;
 	gap: 80px;
+}
 
-	.buttons_container {
-		display: flex;
-		gap: 24px;
-	}
+.buttons_container {
+	display: flex;
+	gap: 24px;
 }
 
 @media (max-width: $break-point-tablet) {
@@ -56,5 +56,15 @@
 
 	.timeline_constraint {
 		width: 100%;
+	}
+}
+
+@media (max-width: $break-point-mobile) {
+	.links {
+		display: none;
+	}
+
+	.buttons_container {
+		display: none;
 	}
 }

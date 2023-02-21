@@ -47,3 +47,9 @@
 	line-height: 16px;
 	color: $color-text;
 }
+
+@media (max-width: $break-point-tablet) {
+	.wrapper {
+		overflow: visible;
+	}
+}
