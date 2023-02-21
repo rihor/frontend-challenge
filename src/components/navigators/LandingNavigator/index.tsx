@@ -1,7 +1,8 @@
+import Image from "next/image";
 import { Button } from "@/components/Button";
 import { HorizontalTimeline } from "@/components/HorizontalTimeline";
+import { useWindowSize } from "@/hooks/useWindowSize";
 import { Blockchain } from "@/services/blockchains";
-import Image from "next/image";
 import styles from "./styles.module.scss";
 
 interface Props {
@@ -11,6 +12,10 @@ interface Props {
 }
 
 export function LandingNavigator(props: Props) {
+	const { width, height } = useWindowSize();
+
+	const isDesktop = (width || 0) > 768;
+
 	return (
 		<div className={styles.background}>
 			<nav className={styles.wrapper}>
@@ -33,9 +38,11 @@ export function LandingNavigator(props: Props) {
 				</div>
 
 				<div className={styles.right_wrapper}>
-					<div className={styles.timeline_constraint}>
-						<HorizontalTimeline chains={props.blockchains} />
-					</div>
+					{isDesktop ? (
+						<div className={styles.timeline_constraint}>
+							<HorizontalTimeline chains={props.blockchains} />
+						</div>
+					) : undefined}
 					<div className={styles.buttons_container}>
 						<Button design="ghost" onClick={props.onSignInClick}>
 							Sign in
@@ -46,6 +53,11 @@ export function LandingNavigator(props: Props) {
 					</div>
 				</div>
 			</nav>
+			{!isDesktop ? (
+				<div className={styles.timeline_constraint}>
+					<HorizontalTimeline chains={props.blockchains} />
+				</div>
+			) : undefined}
 		</div>
 	);
 }
