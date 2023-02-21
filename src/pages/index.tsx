@@ -35,11 +35,11 @@ export default function LandingPage(props: Props) {
 	return (
 		<main className={styles.main}>
 			<Modal ref={modalHandlerSignIn}>
-				<SignInForm />
+				<SignInForm onNeedAccount={openSignUp} />
 			</Modal>
 
 			<Modal ref={modalHandlerSignUp}>
-				<SignUpForm />
+				<SignUpForm onAlreadyHaveAccount={openSignIn} />
 			</Modal>
 
 			<LandingNavigator
