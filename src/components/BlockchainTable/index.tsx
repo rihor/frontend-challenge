@@ -83,6 +83,8 @@ export function BlockchainTable(props: Props) {
 									height={16}
 									alt="open or close row menu"
 									onClick={() => openRowMenu(ctx.row.index)}
+									className={styles.open_menu_img}
+									data-open={indexOpenRow == ctx.row.index}
 								/>
 							</Button>
 						);
@@ -133,10 +135,7 @@ export function BlockchainTable(props: Props) {
 						</td>
 						<td
 							data-visible={row.index == indexOpenRow}
-							className={appendStyles([
-								styles.minimenu,
-								// row.index == indexOpenRow ? styles.visible : styles.not_visible,
-							])}
+							className={styles.minimenu}
 						>
 							{row
 								.getVisibleCells()

@@ -94,6 +94,14 @@
 	height: 0px;
 }
 
+.open_menu_img {
+	transform: rotate(0deg);
+
+	&[data-open="true"] {
+		transform: rotate(180deg);
+	}
+}
+
 @media (max-width: $break-point-tablet) {
 	.table {
 		--table-grid: 40px 1fr 160px 100px 120px;
