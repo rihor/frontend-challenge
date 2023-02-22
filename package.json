@@ -2,6 +2,10 @@
 	"name": "edusynch",
 	"version": "0.1.0",
 	"private": true,
+	"author": {
+		"name": "Pedro Pinho",
+		"url": "https://github.com/rihor"
+	},
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
