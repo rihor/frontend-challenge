@@ -125,3 +125,71 @@
 		}
 	}
 }
+
+@media (max-width: $break-point-mobile) {
+	.section_content {
+		padding-block: 56px;
+	}
+
+	.main_content {
+		h5 {
+			font-weight: 700;
+			font-size: 16px;
+			line-height: 24px;
+		}
+
+		h2 {
+			font-weight: 700;
+			font-size: 24px;
+			line-height: 32px;
+		}
+
+		p {
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 24px;
+		}
+	}
+
+	.cards_wrapper {
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+
+		div::before,
+		div::after {
+			display: none;
+		}
+	}
+
+	.card {
+		min-width: 200px;
+
+		img {
+			width: 40px;
+			height: 40px;
+		}
+	}
+
+	.content {
+		header {
+			p {
+				font-weight: 700;
+				font-size: 14px;
+				line-height: 16px;
+			}
+
+			h4 {
+				font-weight: 700;
+				font-size: 20px;
+				line-height: 32px;
+			}
+		}
+
+		p {
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 24px;
+		}
+	}
+}

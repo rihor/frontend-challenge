@@ -8,7 +8,7 @@ interface Props extends HTMLAttributes<HTMLSpanElement> {
 	hasPercent?: boolean;
 }
 
-export function CurrencyChange(props: Props) {
+export function CurrencyChange({ hasPercent, ...props }: Props) {
 	const isNegative = props.value < 0;
 	const formatted = formatDollar(Number(props.value));
 
@@ -22,7 +22,7 @@ export function CurrencyChange(props: Props) {
 			])}
 		>
 			{isNegative ? formatted : `+${formatted}`}
-			{props.hasPercent ? "%" : undefined}
+			{hasPercent ? "%" : undefined}
 		</span>
 	);
 }

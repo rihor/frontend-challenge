@@ -10,12 +10,26 @@ import styles from "./styles.module.scss";
 import { formatDollar } from "@/utils/currency";
 import { Button } from "../Button";
 import { CurrencyChange } from "../CurrencyChange";
+import { useWindowSize } from "@/hooks/useWindowSize";
+import { useState } from "react";
+import { appendStyles } from "@/utils/styles";
 
 interface Props {
 	blockchains: Blockchain[];
 }
 
 export function BlockchainTable(props: Props) {
+	const [indexOpenRow, setIndexOpenRow] = useState<number | null>(null);
+	const { width } = useWindowSize();
+	const isMobile = (width || 0) <= 595;
+
+	function openRowMenu(id: number) {
+		setIndexOpenRow((prev) => {
+			if (prev === id) return null;
+			return id;
+		});
+	}
+
 	const table = useReactTable({
 		data: props.blockchains,
 		columns: [
@@ -58,16 +72,36 @@ export function BlockchainTable(props: Props) {
 				),
 			},
 			{
-				header: "Trade",
-				cell: (row) => (
-					<Button type="button" design="primary" className={styles.buy_btn}>
-						Buy
-					</Button>
-				),
+				header: isMobile ? "Actions" : "Trade",
+				cell: (ctx) => {
+					if (isMobile) {
+						return (
+							<Button design="ghost">
+								<Image
+									src="/svgs/chevron-up.svg"
+									width={16}
+									height={16}
+									alt="open or close row menu"
+									onClick={() => openRowMenu(ctx.row.index)}
+								/>
+							</Button>
+						);
+					}
+					return (
+						<Button type="button" design="primary" className={styles.buy_btn}>
+							Buy
+						</Button>
+					);
+				},
 			},
 		],
 		getCoreRowModel: getCoreRowModel(),
 	});
+
+	// Here to prevent hydration render issues
+	if (width === undefined) {
+		return <></>;
+	}
 
 	return (
 		<table className={styles.table}>
@@ -90,11 +124,41 @@ export function BlockchainTable(props: Props) {
 			<tbody>
 				{table.getRowModel().rows.map((row) => (
 					<tr key={row.id}>
-						{row.getVisibleCells().map((cell) => (
-							<td key={cell.id}>
-								{flexRender(cell.column.columnDef.cell, cell.getContext())}
-							</td>
-						))}
+						<td>
+							{row.getVisibleCells().map((cell) => (
+								<div key={cell.id} className={styles.row_content}>
+									{flexRender(cell.column.columnDef.cell, cell.getContext())}
+								</div>
+							))}
+						</td>
+						<td
+							data-visible={row.index == indexOpenRow}
+							className={appendStyles([
+								styles.minimenu,
+								// row.index == indexOpenRow ? styles.visible : styles.not_visible,
+							])}
+						>
+							{row
+								.getVisibleCells()
+								.filter((cell) => {
+									const header = cell.column.columnDef.header
+										?.toString()
+										.toLowerCase();
+
+									return header === "price" || header === "change";
+								})
+								.map((cell) => (
+									<div className={styles.mini_item} key={cell.id + "_minimenu"}>
+										<span>{cell.column.id}</span>
+										<span>
+											{flexRender(
+												cell.column.columnDef.cell,
+												cell.getContext()
+											)}
+										</span>
+									</div>
+								))}
+						</td>
 					</tr>
 				))}
 			</tbody>
