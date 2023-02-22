@@ -11,12 +11,18 @@
   <a href="#bônus">Bônus</a>
 </p>
 
-# My experience
+# Project
 
 I've chose to use next.js because it's what I'm confortable with.
 For styling I used sass and css modules, because I really like the experience and safety to work with styles that won't leak and/or force me to use !important.
 For forms I decided to use hook form because it's really easy and optimized.
 And last but not least I used headless ui to implement a modal because it enabled a really clean component.
+
+## How to start it
+
+Run `npm install` to install all dependencies.
+
+Then run `npm run dev` to run the app in your machine.
 
 ## 💻 Sobre o desafio
 
